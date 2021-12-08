@@ -208,7 +208,7 @@ class _ExtendedImageExampleState extends State<ExtendedImageExample> {
 
   Future<void> _pick() async {
     final PickedFile? result =
-        await ImagePicker().getImage(source: ImageSource.camera);
+        await ImagePicker().getImage(source: ImageSource.gallery);
 
     if (result == null) {
       showToast('The pick file is null');
@@ -231,6 +231,12 @@ class _ExtendedImageExampleState extends State<ExtendedImageExample> {
           sat = value;
         });
       },
+      onChangeEnd: (vaf) {
+        setState(() {
+          sat = vaf;
+          crop();
+        });
+      },
       value: sat,
       min: 0,
       max: 2,
@@ -245,6 +251,12 @@ class _ExtendedImageExampleState extends State<ExtendedImageExample> {
           bright = value;
         });
       },
+      onChangeEnd: (value) {
+        setState(() {
+          bright = value;
+          crop();
+        });
+      },
       value: bright,
       min: 0,
       max: 2,
@@ -257,6 +269,12 @@ class _ExtendedImageExampleState extends State<ExtendedImageExample> {
       onChanged: (double value) {
         setState(() {
           con = value;
+        });
+      },
+      onChangeEnd: (value) {
+        setState(() {
+          con = value;
+          crop();
         });
       },
       value: con,
